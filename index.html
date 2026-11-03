@@ -1,0 +1,147 @@
+<!doctype html>
+<html class="landing" lang="en" manifest="cache.appcache">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070d1b">
+
+  <title>CRYSTALLIZE | PS4 HOST</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header id="brand">
+    <div class="brand-inner">
+      <div class="brand-mark">C</div>
+      <div class="brand-name">
+        <b>CRYSTALLIZE</b>
+        <span>PLAYSTATION 4 HOST</span>
+      </div>
+      <div class="brand-version">FW 14.00</div>
+    </div>
+  </header>
+
+  <main class="shell">
+
+    <section class="hero">
+
+      <div class="hero-label">
+        <span class="status-dot"></span>
+        SYSTEM READY
+      </div>
+
+      <h1>
+        UNLOCK YOUR<br>
+        <span>PLAYSTATION.</span>
+      </h1>
+
+      <p class="hero-description">
+        A next-generation host experience.
+        Designed for performance. Built for simplicity.
+      </p>
+
+      <div class="firmware-card">
+        <div class="firmware-info">
+          <span class="info-label">TARGET FIRMWARE</span>
+          <strong>14.00</strong>
+        </div>
+
+        <div class="firmware-divider"></div>
+
+        <div class="firmware-info">
+          <span class="info-label">HOST VERSION</span>
+          <strong>1.0.0</strong>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="panel">
+
+      <div class="panel-heading">
+        <div>
+          <span class="section-label">CONFIGURATION</span>
+          <h2>Payload Selection</h2>
+        </div>
+
+        <span class="panel-indicator">01 / 02</span>
+      </div>
+
+      <form class="pick" id="pick">
+
+        <label class="opt">
+          <input
+            type="radio"
+            name="payload"
+            value="hen"
+          >
+
+          <span class="opt-content">
+            <span class="opt-name">PS4 HEN</span>
+            <span class="opt-description">Homebrew Enabler</span>
+          </span>
+
+          <span class="opt-check"></span>
+        </label>
+
+        <label class="opt selected">
+          <input
+            type="radio"
+            name="payload"
+            value="goldhen"
+            checked
+          >
+
+          <span class="opt-content">
+            <span class="opt-name">GoldHEN</span>
+            <span class="opt-description">GoldHEN Payload</span>
+          </span>
+
+          <span class="opt-check"></span>
+        </label>
+
+        <div class="auto-container">
+          <label class="auto-label" for="auto">
+            <span class="auto-text">
+              <strong>Automatic Start</strong>
+              <small>Launch host automatically</small>
+            </span>
+
+            <input
+              type="checkbox"
+              id="auto"
+              checked
+            >
+
+            <span class="toggle"></span>
+          </label>
+        </div>
+
+        <button class="btn" type="submit">
+          <span>START HOST</span>
+          <span class="btn-arrow">&rarr;</span>
+        </button>
+
+        <p class="count" id="count"></p>
+
+      </form>
+
+      <div class="panel-footer">
+        <span>CRYSTALLIZE SYSTEMS</span>
+        <span>FIRMWARE 14.00</span>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="byline">
+    CRYSTALLIZE PS4 HOST &copy; 2026
+  </footer>
+
+  <script src="launch.js"></script>
+
+</body>
+</html>

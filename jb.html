@@ -1,0 +1,367 @@
+
+<!doctype html>
+<html lang="en" manifest="cache.appcache">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CRYSTALLIZE PS4 HOST</title>
+
+<style>
+:root {
+  color-scheme: dark;
+
+  --bg: #050914;
+  --bg-deep: #030610;
+  --panel: #0b1425;
+  --panel-light: #101e34;
+
+  --blue: #168cff;
+  --cyan: #36d9ff;
+  --blue-soft: rgba(22,140,255,.14);
+
+  --text: #f3f7ff;
+  --muted: #8192ad;
+  --border: rgba(116,170,230,.16);
+
+  --green: #45e6a0;
+  --red: #ff647c;
+  --yellow: #ffc66d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  min-height: 100vh;
+  padding: 26px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow-x: hidden;
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      rgba(16,92,175,.17),
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      #080f1e 0%,
+      var(--bg) 58%,
+      var(--bg-deep) 100%
+    );
+
+  color: var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+/* BRAND */
+
+#brand {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto 26px;
+
+  color: var(--text);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#brand b {
+  font-weight: 800;
+}
+
+#brand::after {
+  content: "PS4 HOST";
+  display: block;
+  margin-top: 7px;
+
+  color: var(--cyan);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+/* RAM MONITOR — COMPACT */
+
+#ramBox {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 11px 14px;
+
+  overflow-wrap: anywhere;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  background: rgba(10,22,40,.78);
+  color: #9db5d4;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: .15px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 8px 25px rgba(0,0,0,.15);
+}
+
+/* LOADING INDICATOR */
+
+#spin {
+  width: 42px;
+  height: 42px;
+  margin: 10px auto 24px;
+
+  border: 3px solid rgba(65,153,255,.13);
+  border-top-color: var(--cyan);
+  border-right-color: var(--blue);
+  border-radius: 50%;
+
+  animation: spin .85s linear infinite;
+
+  box-shadow: 0 0 18px rgba(22,140,255,.12);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* MAIN STATUS */
+
+#msg {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#wrap {
+  width: 100%;
+  max-width: 760px;
+  margin: 22px auto 0;
+  padding: 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: rgba(8,17,32,.9);
+
+  box-shadow:
+    0 16px 45px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+#state {
+  margin-bottom: 12px;
+
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+#out {
+  max-height: 42vh;
+  min-height: 90px;
+  overflow: auto;
+
+  padding: 13px;
+
+  border: 1px solid rgba(104,151,207,.12);
+  border-radius: 8px;
+
+  background: #050b16;
+  color: #a9c6e8;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.65;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* LOG MODE */
+
+body.log #spin,
+body.log #msg {
+  display: none;
+}
+
+body.log #wrap {
+  display: block;
+}
+
+/* SUCCESS */
+
+body.done #spin {
+  display: none;
+}
+
+body.done #msg {
+  color: var(--green);
+  text-shadow: 0 0 20px rgba(69,230,160,.15);
+}
+
+body.done #msg::before {
+  content: "✓ ";
+}
+
+/* FAILURE */
+
+body.fail #spin {
+  display: none;
+}
+
+body.fail #msg {
+  color: var(--red);
+  text-shadow: 0 0 20px rgba(255,100,124,.12);
+}
+
+/* NOTICES */
+
+.notice {
+  margin: 14px 0;
+  padding: 14px 15px;
+
+  border: 1px solid rgba(255,100,124,.3);
+  border-left: 3px solid var(--red);
+  border-radius: 8px;
+
+  background: rgba(255,75,105,.07);
+  color: #ffb2be;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+/* STATUS LABELS */
+
+.ok {
+  color: var(--green);
+}
+
+.bad {
+  color: var(--red);
+}
+
+.warn {
+  color: var(--yellow);
+}
+
+/* CODE */
+
+code {
+  padding: 2px 5px;
+  border-radius: 4px;
+
+  background: rgba(22,140,255,.1);
+  color: var(--cyan);
+
+  font-family: Consolas, "Courier New", monospace;
+}
+
+/* FOOTER */
+
+.byline {
+  width: 100%;
+  max-width: 760px;
+  margin: 25px auto 0;
+
+  color: #52647e;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+  body {
+    padding: 20px 14px;
+  }
+
+  #brand {
+    margin-bottom: 22px;
+    font-size: 17px;
+  }
+
+  #ramBox {
+    font-size: 9px;
+  }
+
+  #wrap {
+    padding: 12px;
+  }
+
+  #out {
+    font-size: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="brand"><b>CRYSTALLIZE</b></div>
+
+<div id="ramBox">RAM: checking...</div>
+
+<div id="spin"></div>
+
+<div id="msg">Restart your console</div>
+
+<div id="wrap">
+  <div id="state"></div>
+  <div id="out"></div>
+</div>
+
+<p class="byline">CRYSTALLIZE PS4 HOST</p>
+
+<script type="module">
+  import "./jb.js";
+</script>
+
+</body>
+</html>
