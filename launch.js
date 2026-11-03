@@ -1,3 +1,4 @@
+
 /* The landing page: pick a payload, then start the run.
  *
  * Leaving this page has to be a real navigation from it -- the referrer guard
@@ -16,10 +17,6 @@ var autoBox = document.getElementById("auto");
 var countEl = document.getElementById("count");
 var ticker = null;
 
-/* The choice is remembered in localStorage, not by any HTTP cache: cache
-   headers decide whether a file is fetched again, never what the page
-   remembers. Both accessors are guarded, because storage can be unavailable
-   or throw outright, and the page has to work either way. */
 function remember() {
   try {
     localStorage.setItem(
@@ -79,8 +76,6 @@ form.addEventListener("change", function (ev) {
     else stopClock();
     return;
   }
-  /* Switching payload while the clock runs restarts it, so what is counting
-     down is always what is actually selected. */
   if (ev.target.name === "payload" && autoBox.checked) {
     stopClock();
     startClock();
