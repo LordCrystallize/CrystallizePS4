@@ -9,23 +9,17 @@
 <style>
 :root {
   color-scheme: dark;
-
-  --bg: #050914;
-  --bg-deep: #030610;
-  --panel: #0b1425;
-  --panel-light: #101e34;
-
-  --blue: #168cff;
-  --cyan: #36d9ff;
-  --blue-soft: rgba(22,140,255,.14);
-
-  --text: #f3f7ff;
-  --muted: #8192ad;
-  --border: rgba(116,170,230,.16);
-
-  --green: #45e6a0;
-  --red: #ff647c;
-  --yellow: #ffc66d;
+  --bg: #080b10;
+  --surface: #0d121a;
+  --surface2: #111923;
+  --border: #202d3b;
+  --text: #e5edf5;
+  --muted: #75869a;
+  --blue: #48a9ff;
+  --cyan: #50d8ef;
+  --green: #43e69a;
+  --red: #ff6278;
+  --yellow: #ffc56b;
 }
 
 * {
@@ -44,34 +38,15 @@ html {
 
 body {
   min-height: 100vh;
-  padding: 26px 20px 22px;
+  padding: 25px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
-  overflow-x: hidden;
-  background:
-    radial-gradient(
-      ellipse at 50% 35%,
-      rgba(16,92,175,.17),
-      transparent 58%
-    ),
-    linear-gradient(
-      180deg,
-      #080f1e 0%,
-      var(--bg) 58%,
-      var(--bg-deep) 100%
-    );
-
+  background: var(--bg);
   color: var(--text);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
 
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -79,15 +54,17 @@ body {
 
 #brand {
   width: 100%;
-  max-width: 760px;
-  margin: 0 auto 26px;
+  max-width: 900px;
+  margin: 0 auto 20px;
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid var(--border);
 
   color: var(--text);
-  font-size: 19px;
+  font-size: 15px;
   font-weight: 800;
-  letter-spacing: 5px;
-  text-align: center;
-  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-align: left;
 }
 
 #brand b {
@@ -95,56 +72,44 @@ body {
 }
 
 #brand::after {
-  content: "PS4 HOST";
-  display: block;
-  margin-top: 7px;
-
-  color: var(--cyan);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 5px;
+  content: " / PS4 HOST";
+  color: var(--blue);
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 
-/* RAM MONITOR — COMPACT */
+/* RAM */
 
 #ramBox {
   width: 100%;
-  max-width: 760px;
-  margin: 0 auto 20px;
-  padding: 11px 14px;
+  max-width: 900px;
+  margin: 0 auto 14px;
+  padding: 9px 12px;
 
-  overflow-wrap: anywhere;
   border: 1px solid var(--border);
-  border-radius: 9px;
+  border-radius: 4px;
 
-  background: rgba(10,22,40,.78);
-  color: #9db5d4;
+  background: var(--surface);
+  color: var(--cyan);
 
   font-family: Consolas, "Courier New", monospace;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.6;
-  letter-spacing: .15px;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.025),
-    0 8px 25px rgba(0,0,0,.15);
+  overflow-wrap: anywhere;
 }
 
-/* LOADING INDICATOR */
+/* LOADING */
 
 #spin {
-  width: 42px;
-  height: 42px;
-  margin: 10px auto 24px;
+  width: 25px;
+  height: 25px;
+  margin: 15px auto;
 
-  border: 3px solid rgba(65,153,255,.13);
-  border-top-color: var(--cyan);
-  border-right-color: var(--blue);
+  border: 2px solid #25384a;
+  border-top-color: var(--blue);
   border-radius: 50%;
 
-  animation: spin .85s linear infinite;
-
-  box-shadow: 0 0 18px rgba(22,140,255,.12);
+  animation: spin .8s linear infinite;
 }
 
 @keyframes spin {
@@ -153,68 +118,74 @@ body {
   }
 }
 
-/* MAIN STATUS */
+/* STATUS */
 
 #msg {
   width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 10px auto;
 
-  color: var(--text);
-  font-size: 17px;
+  color: var(--blue);
+  font-size: 14px;
   font-weight: 800;
-  letter-spacing: 3px;
-  line-height: 1.5;
+  letter-spacing: 2px;
+  line-height: 1.6;
   text-align: center;
   text-transform: uppercase;
 }
 
+/* MAIN TERMINAL */
+
 #wrap {
   width: 100%;
-  max-width: 760px;
-  margin: 22px auto 0;
-  padding: 18px;
+  max-width: 900px;
+  margin: 12px auto 0;
 
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 5px;
 
-  background: rgba(8,17,32,.9);
-
-  box-shadow:
-    0 16px 45px rgba(0,0,0,.25),
-    inset 0 1px 0 rgba(255,255,255,.025);
+  background: var(--surface);
 }
+
+/* TERMINAL HEADER */
 
 #state {
-  margin-bottom: 12px;
+  min-height: 39px;
+  margin: 0;
+  padding: 11px 14px;
 
+  border-bottom: 1px solid var(--border);
+
+  background: var(--surface2);
   color: var(--cyan);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  line-height: 1.6;
-  text-transform: uppercase;
-}
-
-#out {
-  max-height: 42vh;
-  min-height: 90px;
-  overflow: auto;
-
-  padding: 13px;
-
-  border: 1px solid rgba(104,151,207,.12);
-  border-radius: 8px;
-
-  background: #050b16;
-  color: #a9c6e8;
 
   font-family: Consolas, "Courier New", monospace;
   font-size: 11px;
-  line-height: 1.65;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* EXPLOIT OUTPUT */
+
+#out {
+  min-height: 180px;
+  max-height: 62vh;
+  overflow: auto;
+
+  padding: 18px;
+
+  background: #070b10;
+  color: #c4d4e4;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.8;
 
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+
   -webkit-overflow-scrolling: touch;
 }
 
@@ -229,7 +200,7 @@ body.log #wrap {
   display: block;
 }
 
-/* SUCCESS */
+/* SUCCESS ANIMATION */
 
 body.done #spin {
   display: none;
@@ -237,11 +208,65 @@ body.done #spin {
 
 body.done #msg {
   color: var(--green);
-  text-shadow: 0 0 20px rgba(69,230,160,.15);
+  animation: successPulse 1.2s ease-out;
 }
 
 body.done #msg::before {
   content: "✓ ";
+}
+
+body.done #msg::after {
+  content: "SUCCESS - EXIT THE BROWSER";
+  display: block;
+
+  margin: 12px auto 0;
+  padding: 12px;
+
+  border: 1px solid rgba(67,230,154,.4);
+  border-radius: 4px;
+
+  background: rgba(67,230,154,.07);
+  color: var(--green);
+
+  font-size: 12px;
+  letter-spacing: 2px;
+
+  animation: successReveal .7s ease-out;
+}
+
+body.done #wrap {
+  border-color: rgba(67,230,154,.4);
+  box-shadow: 0 0 22px rgba(67,230,154,.08);
+}
+
+body.done #state {
+  color: var(--green);
+  border-color: rgba(67,230,154,.25);
+}
+
+@keyframes successPulse {
+  0% {
+    opacity: .2;
+    transform: scale(.97);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes successReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* FAILURE */
@@ -252,28 +277,34 @@ body.fail #spin {
 
 body.fail #msg {
   color: var(--red);
-  text-shadow: 0 0 20px rgba(255,100,124,.12);
+}
+
+body.fail #msg::before {
+  content: "! ";
+}
+
+body.fail #wrap {
+  border-color: rgba(255,98,120,.4);
 }
 
 /* NOTICES */
 
 .notice {
-  margin: 14px 0;
-  padding: 14px 15px;
+  margin: 12px;
+  padding: 13px;
 
-  border: 1px solid rgba(255,100,124,.3);
+  border: 1px solid rgba(255,98,120,.35);
   border-left: 3px solid var(--red);
-  border-radius: 8px;
+  border-radius: 3px;
 
-  background: rgba(255,75,105,.07);
-  color: #ffb2be;
+  background: #171017;
+  color: #ffb4c0;
 
   font-size: 12px;
-  font-weight: 600;
   line-height: 1.7;
 }
 
-/* STATUS LABELS */
+/* STATUS COLORS */
 
 .ok {
   color: var(--green);
@@ -290,12 +321,9 @@ body.fail #msg {
 /* CODE */
 
 code {
-  padding: 2px 5px;
-  border-radius: 4px;
-
-  background: rgba(22,140,255,.1);
+  padding: 2px 4px;
+  background: #142438;
   color: var(--cyan);
-
   font-family: Consolas, "Courier New", monospace;
 }
 
@@ -303,39 +331,34 @@ code {
 
 .byline {
   width: 100%;
-  max-width: 760px;
-  margin: 25px auto 0;
+  max-width: 900px;
+  margin: 18px auto 0;
 
-  color: #52647e;
+  color: #526174;
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 2px;
-  line-height: 1.6;
   text-align: center;
-  text-transform: uppercase;
 }
 
 /* RESPONSIVE */
 
 @media (max-width: 600px) {
   body {
-    padding: 20px 14px;
+    padding: 16px 10px;
   }
 
   #brand {
-    margin-bottom: 22px;
-    font-size: 17px;
-  }
-
-  #ramBox {
-    font-size: 9px;
-  }
-
-  #wrap {
-    padding: 12px;
+    font-size: 13px;
   }
 
   #out {
+    padding: 13px;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  #ramBox {
     font-size: 10px;
   }
 }
