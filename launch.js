@@ -64,16 +64,7 @@ function stopClock() {
 }
 
 function startClock() {
-  var left = AUTOSTART_SECONDS;
-  countEl.textContent = "starting in " + left + "s";
-  ticker = setInterval(function () {
-    left -= 1;
-    if (left <= 0) {
-      start();
-      return;
-    }
-    countEl.textContent = "starting in " + left + "s";
-  }, 1000);
+  start();
 }
 
 form.addEventListener("submit", function (ev) {
