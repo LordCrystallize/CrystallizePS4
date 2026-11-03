@@ -583,7 +583,7 @@ let mainMf = null,
     );
 
 
-    state("running the primitive...", "warn");
+    state("Initializing Exploit Engine...", "warn");
     await new Promise((r) => setTimeout(r, 0));
 
     const PRIMITIVE_LOUD = /FAIL|ERROR|THREW|RETRY|ABORT|PASS/i;
